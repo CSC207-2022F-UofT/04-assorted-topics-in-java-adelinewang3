@@ -9,7 +9,6 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 class DrivableMap {
     HashMap<String, Drivable> drivable_map;
@@ -27,7 +26,13 @@ class DrivableMap {
      *       in drivable_map, then add the pair to drivable_map.
      *       Return true if the Drivable was added to drivable_map.
      */
-
+    public boolean addDrivable(String id, Drivable object){
+        if (drivable_map.get(id) == null){
+            drivable_map.put(id, object);
+            return true;
+        }
+        return false;
+    }
 
 
 
@@ -38,7 +43,14 @@ class DrivableMap {
      * iterate through drivable_map.
      */
 
-
+    public boolean hasFasterThan(int speed){
+        for (Drivable object : drivable_map.values()){
+            if (object.getMaxSpeed() >= speed){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 
@@ -47,6 +59,15 @@ class DrivableMap {
      *       drivable_map.
      */
 
+    public ArrayList<Tradable> getTradable(){
+        ArrayList<Tradable> tradableItems = new ArrayList<>();
+        for (Drivable object : drivable_map.values()){
+            if (object instanceof Tradable){
+                tradableItems.add((Tradable) object);
+            }
+        }
+        return tradableItems;
+    }
 
 
     
